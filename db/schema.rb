@@ -10,13 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_11_065623) do
+ActiveRecord::Schema.define(version: 2019_02_11_070918) do
 
   create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.datetime "date"
     t.integer "home_team_id"
     t.integer "away_team_id"
     t.string "venue"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "personal_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "game_id"
+    t.string "min"
+    t.integer "fgm"
+    t.integer "fga"
+    t.integer "3pm"
+    t.integer "3pa"
+    t.integer "ftm"
+    t.integer "fta"
+    t.integer "oreb"
+    t.integer "dreb"
+    t.integer "ast"
+    t.integer "tov"
+    t.integer "stl"
+    t.integer "blk"
+    t.integer "pf"
+    t.integer "pts"
+    t.integer "plus_minus"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
