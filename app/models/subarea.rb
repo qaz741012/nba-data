@@ -1,0 +1,2 @@
+class Subarea < ApplicationRecord
+end
