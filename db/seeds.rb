@@ -6,7 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-DatabaseCleaner.clean_with :truncation
+Area.destroy_all
+Subarea.destroy_all
+Team.destroy_all
 puts "Database cleaned."
 
 area_list = [
