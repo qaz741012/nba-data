@@ -3,7 +3,19 @@
 one:
   full_name: MyString
   price: 1
+  position: MyString
+  team_id: 1
+  birthdate: 2019-02-14 09:57:42
+  coach_play_price: 1
+  coach_play_position: MyString
+  back_number: 1
 
 two:
   full_name: MyString
   price: 1
+  position: MyString
+  team_id: 1
+  birthdate: 2019-02-14 09:57:42
+  coach_play_price: 1
+  coach_play_position: MyString
+  back_number: 1
