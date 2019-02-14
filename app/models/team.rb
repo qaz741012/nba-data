@@ -4,6 +4,6 @@ class Team < ApplicationRecord
   belongs_to :subarea
   has_many :players, dependent: :restrict_with_exception
 
-  has_many :home_games, foreign_key: :home_team_id, class_name: 'Game'
-  has_many :away_games, foreign_key: :away_team_id, class_name: 'Game'
+  has_many :home_games, class_name: 'Game', foreign_key: :home_team_id, inverse_of: :home_team
+  has_many :away_games, class_name: 'Game', foreign_key: :away_team_id, inverse_of: :away_team
 end
