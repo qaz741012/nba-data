@@ -1,3 +1,5 @@
+### 每隊伍的球員名單 ##########
+
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from bs4 import BeautifulSoup
@@ -18,10 +20,9 @@ with open("config/database.yml", "r") as yml:
 
 curs = db.cursor()
 
-### 每隊伍的球員名單 ##########
 options = webdriver.ChromeOptions()
-# options.add_argument('headless')
-options.binary_location = '/usr/bin/google-chrome-stable'
+options.add_argument('headless')
+options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.96 Safari/537.36')
 driver = webdriver.Chrome(options=options)
 
 url = 'https://stats.nba.com/teams/'
@@ -68,6 +69,6 @@ for team_a_tag in team_a_tags:
         val = (full_name, back_number, position, birthdate, team_id, dt.datetime.utcnow(), dt.datetime.utcnow())
         curs.execute(sql, val)
 
-driver.close()
+driver.quit()
 db.commit()
 db.close()
