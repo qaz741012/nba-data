@@ -4,6 +4,8 @@ class PersonalRecord < ApplicationRecord
   belongs_to :player
   belongs_to :game
 
+  validates :game_id, uniqueness: { scope: :player_id }
+
   private
 
   def count_coach_play_score
