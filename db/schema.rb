@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_083201) do
+ActiveRecord::Schema.define(version: 2019_02_20_025147) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2019_02_19_083201) do
     t.datetime "updated_at", null: false
     t.date "date"
     t.string "stat_id"
+    t.integer "home_team_score"
+    t.integer "away_team_score"
   end
 
   create_table "personal_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
@@ -34,8 +36,8 @@ ActiveRecord::Schema.define(version: 2019_02_19_083201) do
     t.string "min"
     t.integer "fgm"
     t.integer "fga"
-    t.integer "3pm"
-    t.integer "3pa"
+    t.integer "tpm"
+    t.integer "tpa"
     t.integer "ftm"
     t.integer "fta"
     t.integer "oreb"
@@ -50,6 +52,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_083201) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "coach_play_score"
+    t.string "dnp"
   end
 
   create_table "players", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
