@@ -1,0 +1,28 @@
+.nav.nav-pills {
+  .nav-link {
+    color: #777;
+  }
+
+  .nav-link.active {
+    color: #eee;
+    background-color: #aaa;
+  }
+}
+
+#team_card_container {
+  .card {
+    width: 190px;
+    height: 320px;
+
+    img {
+      height: 188px;
+    }
+    h6 {
+      height: 40px;
+    }
+    a {
+      background-color: #aaa;
+      border: none;
+    }
+  }
+}
