@@ -6,6 +6,23 @@ import numpy as np
 import pandas as pd
 import yaml
 import MySQLdb
+import datetime as dt
+
+def get_name(name):
+    two = ["SG", "PG", "SF", "PF"]
+    one = ["F", "C", "G"]
+    
+    c1 = name[-1] in one
+    c2 = name[-2:] in two
+    
+    if c2:
+        return name[:-2]
+    elif c1:
+        return name[:-1]
+
+def abbr_name(name):
+    s = name.split(' ')
+    return "{0}. {1}".format(s[0][0], s[1])
 
 ### Coach-Play隊伍：隊伍id 對照雜湊 ##########
 team_hash = {
@@ -42,19 +59,7 @@ team_hash = {
 }
 
 
-# Environment
-env = 'development'
-
-# load database configurations and connect to database
-with open("config/database.yml", "r") as yml:
-    config = yaml.load(yml)
-    user = config[env]['username']
-    passwd = config[env]['password']
-    db_name = config[env]['database']
-    db = MySQLdb.connect(host='localhost', user=user, passwd=passwd, db=db_name, charset='utf8')
-
-curs = db.cursor()
-
+### 從Coach-Play網站爬資料 ##########
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 driver = webdriver.Chrome(options=options)
@@ -66,6 +71,7 @@ prices = range(150000, 950000, 50000)
 positions = ["F", "C", "G"]
 order = "1"   # 高->低 (2為低->高)
 
+all_players = []
 for price in prices:
     for position in positions:
 
@@ -95,14 +101,59 @@ for price in prices:
         # 8. 總積分：2488　平均積分：48.8
 
         try:
-            players = soup.find_all('td', bgcolor="#FFFFFF", width="538")[0]
+            data = list(soup.find_all('td', bgcolor="#FFFFFF", width="538")[0].stripped_strings)
         except IndexError:
             continue
-        else:
-            player_data = players.stripped_strings
+
+        player = []
+        i = 1
+        for stat in data:
+            if i % 9 in [0, 2, 5, 6]:
+                player.append(stat)
+            if i % 9 == 0:
+                player.append(price)
+                player.append(position)
+                i = 0
+                all_players.append(player)
+                player = []
+            i += 1
             
-
-
 driver.quit()
+
+
+### 將資料存入資料庫 ##########
+
+# Environment
+env = 'development'
+
+# load database configurations and connect to database
+with open("config/database.yml", "r") as yml:
+    config = yaml.load(yml)
+    user = config[env]['username']
+    passwd = config[env]['password']
+    db_name = config[env]['database']
+    db = MySQLdb.connect(host='localhost', user=user, passwd=passwd, db=db_name, charset='utf8')
+
+curs = db.cursor()
+
+for p in all_players:
+    sql = "SELECT * FROM players WHERE team_id = %s AND full_name LIKE CONCAT('%%', %s, '%%')"
+    val = (team_hash[p[0]], get_name(p[2]).split('. ')[1])
+    curs.execute(sql, val)
+    
+    rc = curs.rowcount
+    rs = curs.fetchall()
+    
+    for i in range(rc):
+        cmp_name = get_name(p[2])
+        if abbr_name(rs[i][1]) == cmp_name:
+            coach_play_price = p[4]
+            coach_play_position = p[5]
+            updated_at = dt.datetime.utcnow()
+            
+            sql = "UPDATE players SET coach_play_price=%s, coach_play_position=%s, updated_at=%s WHERE id=%s"
+            val = (coach_play_price, coach_play_position, updated_at, rs[i][0])
+            curs.execute(sql, val)
+
 db.commit()
 db.close()
