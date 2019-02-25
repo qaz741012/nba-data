@@ -10,8 +10,13 @@
 }
 
 #team_card_container {
+  display: flex;
+  flex-flow: row wrap;
+
   .card {
-    width: 190px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 190px;
     height: 320px;
 
     img {

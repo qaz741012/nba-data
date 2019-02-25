@@ -9,7 +9,7 @@
   <% end %>
 </ul>
 
-<div id="team_card_container" class="mt-5 row">
+<div id="team_card_container" class="mt-5">
   <% @teams.each do |team| %>
     <div class="card mr-1 my-1 text-center">
       <%= image_tag team.logo.url, class: "card-img-top", alt: team.abbr_name %>
