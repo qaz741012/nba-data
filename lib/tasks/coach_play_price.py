@@ -155,5 +155,9 @@ for p in all_players:
             val = (coach_play_price, coach_play_position, updated_at, rs[i][0])
             curs.execute(sql, val)
 
+sql = "INSERT INTO update_times (coach_play, created_at, updated_at) VALUES (%s, %s, %s)"
+val = (dt.datetime.utcnow(), dt.datetime.utcnow(), dt.datetime.utcnow())
+curs.execute(sql, val)
+
 db.commit()
 db.close()

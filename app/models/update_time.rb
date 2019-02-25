@@ -1,0 +1,2 @@
+class UpdateTime < ApplicationRecord
+end
