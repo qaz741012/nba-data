@@ -1,0 +1,11 @@
+<table>
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= game[0].abbr_name %></td>
+        <td><%= game[2] %></td>
+        <td><%= game[1].abbr_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

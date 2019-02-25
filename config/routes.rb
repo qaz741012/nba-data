@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :players
 
   resources :teams
+
+  get :daily, to: "datas#daily"
 end
