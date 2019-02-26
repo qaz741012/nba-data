@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_25_081626) do
+ActiveRecord::Schema.define(version: 2019_02_26_160141) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_081626) do
     t.datetime "updated_at", null: false
     t.date "birthdate"
     t.string "stat_id"
+    t.float "average_coach_play_score"
   end
 
   create_table "subareas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|

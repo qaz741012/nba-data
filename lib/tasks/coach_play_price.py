@@ -149,10 +149,11 @@ for p in all_players:
         if abbr_name(rs[i][1]) == cmp_name:
             coach_play_price = p[4]
             coach_play_position = p[5]
+            average_coach_play_score = float(p[3].split('：')[-1])
             updated_at = dt.datetime.utcnow()
             
-            sql = "UPDATE players SET coach_play_price=%s, coach_play_position=%s, updated_at=%s WHERE id=%s"
-            val = (coach_play_price, coach_play_position, updated_at, rs[i][0])
+            sql = "UPDATE players SET coach_play_price=%s, coach_play_position=%s, average_coach_play_score=%s, updated_at=%s WHERE id=%s"
+            val = (coach_play_price, coach_play_position, average_coach_play_score, updated_at, rs[i][0])
             curs.execute(sql, val)
 
 sql = "INSERT INTO update_times (coach_play, created_at, updated_at) VALUES (%s, %s, %s)"
