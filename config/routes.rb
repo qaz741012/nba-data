@@ -7,5 +7,7 @@ Rails.application.routes.draw do
 
   resources :teams
 
+  resources :games
+
   get :daily, to: "datas#daily"
 end
