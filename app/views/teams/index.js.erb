@@ -1,0 +1,10 @@
+$('#team_card_container').html(`
+<%= j(render partial: 'shared/team_list', :collection => @teams, :as => :team) %>
+  `);
+
+$('.nav-link').removeClass('active');
+if (<%= @subarea_id %> !== "all") {
+  $(`#<%= @subarea_id %>`).addClass('active');
+} else {
+  $('#all').addClass('active');
+}

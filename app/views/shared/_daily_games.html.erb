@@ -1,13 +1,17 @@
 <div class="game my-3">
   <div class="team away_team">
-    <%= image_tag game[:away].logo.url %>
+    <%= link_to team_path(game[:away]) do %>  
+      <%= image_tag game[:away].logo.url %>
+    <% end %>
     <h4 class="mt-2"><%= game[:away].abbr_name %></h4>
   </div>
   <div class="game_status mx-3">
     <h5><%= game[:status] %></h5>
   </div>
   <div class="team home_team">
-    <%= image_tag game[:home].logo.url %>
+    <%= link_to team_path(game[:home]) do %>
+      <%= image_tag game[:home].logo.url %>
+    <% end %>
     <h4 class="mt-2"><%= game[:home].abbr_name %></h4>
   </div>
 

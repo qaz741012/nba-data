@@ -1,0 +1,8 @@
+<div class="card mr-1 my-1 text-center">
+  <%= image_tag team.logo.url, class: "card-img-top", alt: team.abbr_name %>
+  <div class="card-body">
+    <h6 class="card-title"><%= team.full_name %></h6>
+    <p class="card-text"></p>
+    <%= link_to "Go Team Page", team_path(team), class: "btn btn-primary" %>
+  </div>
+</div>

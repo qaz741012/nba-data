@@ -1,25 +1,16 @@
 <section id="teams_index">
   <ul class="nav nav-pills nav-fill">
     <li class="nav-item">
-      <%= link_to "All", teams_path, class: "nav-link #{'active' if !@subarea_id}" %>
+      <%= link_to "All", teams_path(subarea_id: "all"), class: "nav-link active", id: "all", remote: true %>
     </li>
     <% @subareas.each do |subarea| %>
       <li class="nav-item">
-        <%= link_to subarea.name, teams_path(subarea_id: subarea.id), class: "nav-link #{'active' if @subarea_id.to_i == subarea.id}" %>
+        <%= link_to subarea.name, teams_path(subarea_id: subarea.id), class: "nav-link", id: subarea.id, remote: true %>
       </li>
     <% end %>
   </ul>
 
   <div id="team_card_container" class="mt-5">
-    <% @teams.each do |team| %>
-      <div class="card mr-1 my-1 text-center">
-        <%= image_tag team.logo.url, class: "card-img-top", alt: team.abbr_name %>
-        <div class="card-body">
-          <h6 class="card-title"><%= team.full_name %></h6>
-          <p class="card-text"></p>
-          <%= link_to "Go Team Page", team_path(team), class: "btn btn-primary" %>
-        </div>
-      </div>
-    <% end %>
+    <%= render partial: 'shared/team_list', :collection => @teams, :as => :team %>
   </div>
 </section>
