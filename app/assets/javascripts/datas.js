@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   if ($('#datas_daily').length > 0) {
 
     // Setting of DateRangePicker 
@@ -25,4 +25,4 @@ $(function() {
       });
     });
   }
-})
+});
