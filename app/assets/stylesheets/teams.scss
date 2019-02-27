@@ -1,33 +1,35 @@
-.nav.nav-pills {
-  .nav-link {
-    color: #777;
-  }
-
-  .nav-link.active {
-    color: #eee;
-    background-color: #aaa;
-  }
-}
-
-#team_card_container {
-  display: flex;
-  flex-flow: row wrap;
-
-  .card {
-    flex-grow: 1;
-    flex-shrink: 0;
-    flex-basis: 190px;
-    height: 320px;
-
-    img {
-      height: 188px;
+#teams_index {
+  .nav.nav-pills {
+    .nav-link {
+      color: #777;
     }
-    h6 {
-      height: 40px;
-    }
-    a {
+
+    .nav-link.active {
+      color: #eee;
       background-color: #aaa;
-      border: none;
+    }
+  }
+
+  #team_card_container {
+    display: flex;
+    flex-flow: row wrap;
+
+    .card {
+      flex-grow: 1;
+      flex-shrink: 0;
+      flex-basis: 190px;
+      height: 320px;
+
+      img {
+        height: 188px;
+      }
+      h6 {
+        height: 40px;
+      }
+      a {
+        background-color: #aaa;
+        border: none;
+      }
     }
   }
 }

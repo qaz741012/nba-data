@@ -26,6 +26,10 @@
     width: 100%;
   }
 
+  img:hover {
+    border: 1px solid #ccc;
+  }
+
   .game::after {
     position: absolute;
     content: " ";
