@@ -33,3 +33,56 @@
     }
   }
 }
+
+#teams_show {
+
+  #team {
+    background-color: #eee;
+
+    img {
+      width: 200px;
+    }
+
+    > div {
+      display: inline-block;
+    }
+
+  }
+
+  #players {
+    display: table;
+    width: 100%;
+
+    .table_row {
+      display: table-row;
+    }
+
+    .cell {
+      display: table-cell;
+      padding: 5px 3px;
+    }
+    
+    .header {
+      .cell {
+        padding: 7px 3px;
+        font-size: 18px;
+        font-weight: 600;
+        border-bottom: 1px solid #777;
+
+        a {
+          text-decoration: none;
+          color: #222;
+        }
+        a:hover {
+          color: #777;
+        }
+      }
+
+      // .cell::after {
+      //   content: "▲▼";
+      //   color: #777;
+      //   font-size: 12px;
+      // }
+    }
+  }
+}

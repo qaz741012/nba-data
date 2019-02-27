@@ -13,6 +13,10 @@ class TeamsController < ApplicationController
   end
 
   def show
-    
+    @team = Team.find(params[:id])
+
+    @players = @team.players
+    @order_method = "desc"
+    @players = @players.order(params[:order] => @order_method) if params[:order]
   end
 end

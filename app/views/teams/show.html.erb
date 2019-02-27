@@ -1,0 +1,34 @@
+<section id="teams_show">
+  <div id="team">
+    <%= image_tag @team.logo.url %>
+    <div class="ml-4">
+      <h4><%= @team.full_name %></h4>
+      <h4><%= @team.abbr_name %></h4>
+    </div>
+  </div>
+
+  <div id="players" class="pt-5">
+    <div class="table_row header">
+      <div class="cell">
+        <%= link_to "Player", team_path(@team, order: "full_name") %>
+      </div>
+      <div class="cell">
+        <%= link_to "Price", team_path(@team, order: "coach_play_price") %>
+      </div>
+      <div class="cell">
+        <%= link_to "Position", team_path(@team, order: "coach_play_position") %>
+      </div>
+      <div class="cell">
+        <%= link_to "Average Score", team_path(@team, order: "average_coach_play_score") %>
+      </div>
+    </div>
+    <% @players.each do |player| %>
+      <div class="table_row player">
+        <div class="cell"><%= player.full_name %></div>
+        <div class="cell"><%= player.coach_play_price %></div>
+        <div class="cell"><%= player.coach_play_position %></div>
+        <div class="cell"><%= player.average_coach_play_score %></div>
+      </div>
+    <% end %>
+  </div>
+</section>
