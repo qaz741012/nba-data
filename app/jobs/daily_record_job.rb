@@ -54,6 +54,8 @@ class DailyRecordJob < ApplicationJob
         ) if current_player.present?
       end
     end if game_data['games'].present?
+
+    UpdateTime.create(daily: DateTime.now.utc, daily_date: date.to_date)
   end
 
 end
