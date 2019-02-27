@@ -1,3 +1,38 @@
-// Place all the styles related to the datas controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#datas_daily {
+  #picker {
+    max-width: 300px;
+  }
+  .game {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+
+    .team {
+      text-align: center;
+    }
+
+    .game_status {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 150px;
+    }
+  }
+  .team {
+    width: 200px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .game::after {
+    position: absolute;
+    content: " ";
+    display: block;
+    height: 2px;
+    width: 582px;
+    background-color: #777;
+    bottom: -5px;
+  }
+}

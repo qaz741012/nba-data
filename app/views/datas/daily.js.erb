@@ -1,0 +1,4 @@
+$('#game_list').html(`
+<% @games.each do |game| %>
+  <%= j(render partial: 'shared/daily_games', locals: { game: game }) %>
+<% end %>`)

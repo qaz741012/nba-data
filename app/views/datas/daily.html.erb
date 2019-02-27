@@ -1,11 +1,8 @@
-<table>
-  <tbody>
+<section id="datas_daily">
+  <input type="text" id="picker" class="form-control">
+  <div id="game_list">
     <% @games.each do |game| %>
-      <tr>
-        <td><%= game[0].abbr_name %></td>
-        <td><%= game[2] %></td>
-        <td><%= game[1].abbr_name %></td>
-      </tr>
+      <%= render partial: 'shared/daily_games', locals: { game: game } %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</section>

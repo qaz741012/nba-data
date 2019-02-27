@@ -1,0 +1,15 @@
+<div class="game my-3">
+  <div class="team away_team">
+    <%= image_tag game[:away].logo.url %>
+    <h4 class="mt-2"><%= game[:away].abbr_name %></h4>
+  </div>
+  <div class="game_status mx-3">
+    <h5><%= game[:status] %></h5>
+  </div>
+  <div class="team home_team">
+    <%= image_tag game[:home].logo.url %>
+    <h4 class="mt-2"><%= game[:home].abbr_name %></h4>
+  </div>
+
+  <%= go_game_detail(game, @finish) %>
+</div>

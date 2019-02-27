@@ -1,18 +1,22 @@
 class DatasController < ApplicationController
+  respond_to :html, :json, only: :daily
 
   def daily
-    @date = DateTime.now.utc - 7.hours
+    @finish = true
+    @date = params[:date].present? ? params[:date].to_date : DateTime.now.utc - 7.hours
     date_format = @date.strftime("%Y%m%d")
+    gon.date = date_format
 
     # 已經抓過資料
     @games = Game.where(date: @date)
     if @games.present?
       @games = @games.map do |game|
-        [
-          game.away_team,
-          game.home_team,
-          "#{game.away_team_score}-#{game.home_team_score}"
-        ]
+        {
+          :away => game.away_team,
+          :home => game.home_team,
+          :status => "#{game.away_team_score}-#{game.home_team_score}",
+          :stat_id => game.stat_id
+        }
       end
     end and return
     
@@ -25,24 +29,24 @@ class DatasController < ApplicationController
     end and return
 
     # 確認是否有比賽沒比完
-    finish = true
     data['games'].each do |game|
       if !game['endTimeUTC'].present?
-        finish = false
+        @finish = false
         break
       end
     end
 
     @games = data["games"].map do |game|
-      [
-        Team.find_by_stat_id(game['vTeam']['teamId']),
-        Team.find_by_stat_id(game['hTeam']['teamId']),
-        game['endTimeUTC'].present? ? "#{game['vTeam']['score']}-#{game['hTeam']['score']}" : "Havent finished"
-      ]
+      {
+        :away => Team.find_by_stat_id(game['vTeam']['teamId']),
+        :home => Team.find_by_stat_id(game['hTeam']['teamId']),
+        :status => game['endTimeUTC'].present? ? "#{game['vTeam']['score']}-#{game['hTeam']['score']}" : game['startTimeEastern'],
+        :stat_id => game['gameId']
+      }
     end
 
     # 比賽全部結束 => 存資料
-    DailyRecordJob.perform_later(date_format) if finish
+    DailyRecordJob.perform_later(date_format) if @finish
   end
 
 end
