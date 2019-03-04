@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  respond_to :html, :js, only: :index
+  respond_to :html, :js, only: [:index, :show]
 
   def index
     @subareas = Subarea.all
@@ -14,9 +14,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
-
-    @players = @team.players
-    @order_method = "desc"
-    @players = @players.order(params[:order] => @order_method) if params[:order]
+    @order = params[:order] || "coach_play_price"
+    @players = @team.players.order(@order => "desc")
   end
 end
