@@ -14,7 +14,9 @@
 </div>
 <% @players.each do |player| %>
   <div class="table_row player">
-    <div class="cell"><%= player.full_name %></div>
+    <div class="cell">
+      <%= link_to player.full_name, player_path(player) %>
+    </div>
     <div class="cell"><%= player.coach_play_price %></div>
     <div class="cell"><%= player.coach_play_position %></div>
     <div class="cell"><%= player.average_coach_play_score %></div>
