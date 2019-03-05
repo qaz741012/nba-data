@@ -1,3 +1,52 @@
-// Place all the styles related to the players controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#players_show {
+
+  .top_area {
+    position: relative;
+
+    .input_area {
+      height: 38px;
+      display: inline-block;
+      line-height: 38px;
+      vertical-align: bottom;
+      
+      p, input {
+        position: absolute;
+        display: block;
+      }
+      p:first-of-type {
+        left: 12px;
+      }
+      input {
+        left: 70px;
+        width: 60px;
+      }
+      p:last-of-type {
+        left: 135px;
+      }
+    }
+
+    button {
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .few {
+    max-width: 1400px;
+  }
+  .all {
+    width: 1400px;
+  }
+
+  table {
+    tr {
+      td:nth-of-type(1) {
+        width: 150px;
+      }
+    }
+  }
+  
+  .detail {
+    display: none;
+  }
+}

@@ -1,0 +1,9 @@
+$('tbody').html(`
+<%= j(render partial: "shared/player_game_record", :collection => @records, as: :record) %>
+`);
+
+if ($('thead .detail').css('display') === 'table-cell') {
+  $('.detail').css('display', 'table-cell');
+} else {
+  $('.detail').css('display', 'none');
+}
