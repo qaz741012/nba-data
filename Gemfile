@@ -79,3 +79,4 @@ gem 'delayed_job', '~> 4.1.5'
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'gon', '~> 6.2.1'
+gem 'whenever', require: false

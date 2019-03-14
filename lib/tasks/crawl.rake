@@ -8,4 +8,9 @@ namespace :crawl do
     exec "python3 #{Rails.root.join('lib', 'tasks', 'coach_play_price.py')}"
   end
 
+  task get_daily_record: :environment do
+    date_format = (Date.today - 1.day).strftime("%Y%m%d")
+    DailyRecordJob.perform_later(date_format)
+  end
+
 end
