@@ -2,34 +2,12 @@
   .player_name, .team_name {
     display: inline-block;
   }
+
   .top_area {
-    position: relative;
-
     .input_area {
-      height: 38px;
-      display: inline-block;
-      line-height: 38px;
-      vertical-align: bottom;
-      
-      p, input {
-        position: absolute;
-        display: block;
-      }
-      p:first-of-type {
-        left: 12px;
-      }
-      input {
-        left: 70px;
-        width: 60px;
-      }
-      p:last-of-type {
-        left: 135px;
-      }
-    }
-
-    button {
-      position: absolute;
-      right: 0;
+      * {
+        display: inline-block;
+      } 
     }
   }
 

@@ -30,5 +30,10 @@ $(document).on('turbolinks:load', function() {
         dataType: 'script'
       });
     });
+
+    // select opponent
+    $('#opponent_select').select2({
+      width: '100%'
+    });
   }
 });
