@@ -1,5 +1,6 @@
 <section id="players_show">
-  <h4><%= @player.full_name %></h4>
+  <h4 class="player_name"><%= @player.full_name %></h4>
+  <h5 class="team_name ml-3">(<%= @player.team.abbr_name %>)</h5>
   <div class="top_area mt-5">
     <div class="input_area">
       <p>Recent</p><input class="form-control"><p>Games</p>
@@ -12,6 +13,7 @@
       <thead class="thead-light">
         <tr>
           <td><%= show_game_header %></td>
+          <td>Opponent</td>
           <td>Coach Play Score</td>
           <td class="detail">MIN</td>
           <td class="detail">PTS</td>

@@ -1,5 +1,7 @@
 #players_show {
-
+  .player_name, .team_name {
+    display: inline-block;
+  }
   .top_area {
     position: relative;
 
@@ -32,16 +34,19 @@
   }
 
   .few {
-    max-width: 1400px;
+    max-width: 1500px;
   }
   .all {
-    width: 1400px;
+    width: 1500px;
   }
 
   table {
     tr {
       td:nth-of-type(1) {
         width: 150px;
+      }
+      td:nth-of-type(2) {
+        width: 100px;
       }
     }
   }
