@@ -21,12 +21,14 @@ $(document).on('turbolinks:load', function() {
     // recent ? games
     $('.input_area input').on('keyup', function() {
       let limit = $(this).val() ? $(this).val() : undefined;
+      let selected_opponents_id = $('#opponent_select').val();
       $.ajax({
         url: `/players/${gon.player_id}`,
         method: 'GET',
-        data: {
-          limit: limit
-        },
+        data: {player: {
+          limit: limit,
+          selected_opponents_id: selected_opponents_id
+        }},
         dataType: 'script'
       });
     });
@@ -34,6 +36,20 @@ $(document).on('turbolinks:load', function() {
     // select opponent
     $('#opponent_select').select2({
       width: '100%'
+    });
+
+    $('#opponent_select').on('change', function() {
+      let limit = $('.input_area input').val() ? $('.input_area input').val() : undefined;
+      let selected_opponents_id = $(this).val();
+      $.ajax({
+        url: `/players/${gon.player_id}`,
+        method: 'GET',
+        data: {player: {
+          selected_opponents_id: selected_opponents_id,
+          limit: limit
+        }},
+        dataType: 'script'
+      });
     });
   }
 });

@@ -7,3 +7,13 @@ if ($('thead .detail').css('display') === 'table-cell') {
 } else {
   $('.detail').css('display', 'none');
 }
+
+$('#export_csv').html(`
+<%= j(link_to "Export", export_csv_player_path(@player, 
+                                               format: 'csv', 
+                                               player: { 
+                                                 limit: @limit, 
+                                                 selected_opponents_id: @selected_opponents_id
+                                               }), 
+                        class: "btn btn-info") %>
+  `);

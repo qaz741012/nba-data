@@ -11,6 +11,14 @@
     }
   }
 
+  #export_csv, .detail_area {
+    display: inline-block;
+  }
+
+  .detail_area button {
+    width: 86px;
+  }
+
   .few {
     max-width: 1500px;
   }

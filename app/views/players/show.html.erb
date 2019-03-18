@@ -8,15 +8,19 @@
     <div class="select_area">
       <label>Opponent</label>
       <select id="opponent_select" multiple="multiple" class="input-group">
-        <% @opponents.each do |opponent| %>
-          <option value="<%= opponent.abbr_name %>"><%= opponent.abbr_name %></option>
+        <% @all_opponents.each do |opponent| %>
+          <option value="<%= opponent.id %>"><%= opponent.abbr_name %></option>
         <% end %>
       </select>
     </div>
-    <div class="detail_area text-right mt-3">
-      <%= link_to "Export", export_csv_player_path(@player, format: 'csv'), class: "btn btn-info" %>
-      <button type="button" class="show_detail_btn btn btn-secondary">Detail <i class="fas fa-angle-double-right"></i></button>
-      <button type="button" class="hide_detail_btn btn btn-secondary d-none"><i class="fas fa-angle-double-left"></i> Hide</button>
+    <div class="text-right mt-3">
+      <div id="export_csv">
+        <%= link_to "Export", export_csv_player_path(@player, format: 'csv'), class: "btn btn-info" %>
+      </div>
+      <div class="detail_area">
+        <button type="button" class="show_detail_btn btn btn-secondary">Detail <i class="fas fa-angle-double-right"></i></button>
+        <button type="button" class="hide_detail_btn btn btn-secondary d-none"><i class="fas fa-angle-double-left"></i> Hide</button>
+      </div>
     </div>
   </div>
   <div class="table-responsive mt-2">
