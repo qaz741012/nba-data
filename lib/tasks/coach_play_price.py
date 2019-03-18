@@ -19,6 +19,8 @@ def get_name(name):
         return name[:-2]
     elif c1:
         return name[:-1]
+    else:
+        return name
 
 def abbr_name(name):
     s = name.split(' ')
