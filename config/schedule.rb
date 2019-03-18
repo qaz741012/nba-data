@@ -18,7 +18,7 @@ set :chronic_options, hours24: true
 #   rake "some:great:rake:task"
 # end
 #
-every :day, at: '12:00' do
+every :day, at: '7:00', '12:00' do
   rake "crawl:coach_play_price"
 end
 
