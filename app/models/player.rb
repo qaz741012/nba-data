@@ -7,14 +7,20 @@ class Player < ApplicationRecord
   validates :stat_id, uniqueness: true
 
   def to_csv
-    attributes = %w{min fgm fga}
+    attributes = %w[coach_play_score min fgm fga tpm tpa ftm fta oreb dreb ast tov stl blk pf pts plus_minus dnp]
+    header = %w[date opponent].concat attributes
 
     CSV.generate(headers: true) do |csv|
-      csv << attributes
+      csv << header
 
       self.personal_records.each do |record|
-        csv << attributes.map{ |attr| record.send(attr) }
+        row = []
+        row << record.game.date.strftime("%Y-%m-%d")
+        row << self.team.opponent(record.game).abbr_name
+        row.concat attributes.map { |attr| record.send(attr) }
+        csv << row
       end
     end
   end
+
 end

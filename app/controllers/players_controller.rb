@@ -18,7 +18,7 @@ class PlayersController < ApplicationController
   end
 
   def export_csv
-    send_data @player.to_csv, filename: "test.csv"
+    send_data @player.to_csv, filename: "#{@player.full_name}.csv"
   end
 
   private

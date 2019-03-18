@@ -1,7 +1,7 @@
 <tr>
   <td><%= show_game_column record %></td>
   <% if params[:controller] == "players" && params[:action] == "show" %>
-    <td><%= show_opponent record %></td>
+    <td><%= record.player.team.opponent(record.game).abbr_name %></td>
   <% end %>
   <td><%= record.coach_play_score %></td>
   <td class="detail"><%= record.min %></td>
